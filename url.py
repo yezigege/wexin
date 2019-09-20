@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 from wxauthorize import WxSignatureHandler
 from tornado import web
 

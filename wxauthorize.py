@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import hashlib
 import tornado.web
 # from core.logger_helper import logger
@@ -33,7 +36,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
 
     def check_signature(self, signature, timestamp, nonce):
         """校验token是否正确"""
-        token = 'yzgtest123456'
+        token = 'dzyxwyk9390'
         L = [timestamp, nonce, token]
         L.sort()
         s = L[0] + L[1] + L[2]

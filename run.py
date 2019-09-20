@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import os
 import sys
 import base64
@@ -23,7 +26,7 @@ class Application(web.Application):
             login_url='/login',
             cookie_secret=base64.b64encode(uuid.uuid3(uuid.NAMESPACE_DNS, 'wechat').bytes),
         )
-        web.Application.__init__(urlpatterns, **settings)
+        super(Application, self).__init__(urlpatterns, **settings)
 
 
 def main():
