@@ -1,0 +1,402 @@
+[E 190920 18:45:01 web:1788] Uncaught exception POST /weixin?signature=28834d1cd345eaf7f4e12c774d38bdab225da551&timestamp=1568976301&nonce=1616991213&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112)
+    HTTPServerRequest(protocol='http', host='tingyulin.cn', method='POST', uri='/weixin?signature=28834d1cd345eaf7f4e12c774d38bdab225da551&timestamp=1568976301&nonce=1616991213&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8', version='HTTP/1.1', remote_ip='223.166.222.112')
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.5/dist-packages/tornado/web.py", line 1697, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/ubuntu/wexin/wxauthorize.py", line 52, in post
+        data = ET.fromstring(body)
+    AttributeError: 'NoneType' object has no attribute 'fromstring'
+[E 190920 18:45:01 web:2246] 500 POST /weixin?signature=28834d1cd345eaf7f4e12c774d38bdab225da551&timestamp=1568976301&nonce=1616991213&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 3.61ms
+[I 190920 18:50:22 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190920 18:50:34 wxauthorize:51] body: b'<xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>\n<FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>\n<CreateTime>1568976633</CreateTime>\n<MsgType><![CDATA[text]]></MsgType>\n<Content><![CDATA[\xe4\xbd\xa0\xe5\xa5\xbd]]></Content>\n<MsgId>22462343996695284</MsgId>\n</xml>'
+[E 190920 18:50:34 web:1788] Uncaught exception POST /weixin?signature=338b8d0536b23fd7ea1588d0ad38c18a390348fe&timestamp=1568976633&nonce=1283678906&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112)
+    HTTPServerRequest(protocol='http', host='tingyulin.cn', method='POST', uri='/weixin?signature=338b8d0536b23fd7ea1588d0ad38c18a390348fe&timestamp=1568976633&nonce=1283678906&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8', version='HTTP/1.1', remote_ip='223.166.222.112')
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.5/dist-packages/tornado/web.py", line 1697, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/ubuntu/wexin/wxauthorize.py", line 53, in post
+        data = ET.fromstring(body)
+    AttributeError: 'NoneType' object has no attribute 'fromstring'
+[E 190920 18:50:34 web:2246] 500 POST /weixin?signature=338b8d0536b23fd7ea1588d0ad38c18a390348fe&timestamp=1568976633&nonce=1283678906&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 4.53ms
+[I 190920 18:54:24 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[I 190920 18:54:38 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190920 18:54:53 web:1788] Uncaught exception POST /weixin?signature=f261e2f30e83eef6e17cbac9186873148fbb93ea&timestamp=1568976893&nonce=1544305976&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112)
+    HTTPServerRequest(protocol='http', host='tingyulin.cn', method='POST', uri='/weixin?signature=f261e2f30e83eef6e17cbac9186873148fbb93ea&timestamp=1568976893&nonce=1544305976&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8', version='HTTP/1.1', remote_ip='223.166.222.112')
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.5/dist-packages/tornado/web.py", line 1697, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/ubuntu/wexin/wxauthorize.py", line 49, in post
+        logging.error("body: {}".format(body))
+    NameError: name 'body' is not defined
+[E 190920 18:54:53 web:2246] 500 POST /weixin?signature=f261e2f30e83eef6e17cbac9186873148fbb93ea&timestamp=1568976893&nonce=1544305976&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 4.01ms
+[I 190920 18:55:39 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190920 18:55:47 wxauthorize:49] body: <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1568976947</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[你好]]></Content>
+    <MsgId>22462351452517229</MsgId>
+    </xml>
+[E 190920 18:55:47 web:1788] Uncaught exception POST /weixin?signature=aadec8d9378642a36365838ec0c51803304e470a&timestamp=1568976947&nonce=1452673524&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112)
+    HTTPServerRequest(protocol='http', host='tingyulin.cn', method='POST', uri='/weixin?signature=aadec8d9378642a36365838ec0c51803304e470a&timestamp=1568976947&nonce=1452673524&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8', version='HTTP/1.1', remote_ip='223.166.222.112')
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.5/dist-packages/tornado/web.py", line 1697, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/ubuntu/wexin/wxauthorize.py", line 50, in post
+        logging.debug('微信消息回复中心】收到用户消息' + str(data.decode('utf-8')))
+    AttributeError: 'str' object has no attribute 'decode'
+[E 190920 18:55:47 web:2246] 500 POST /weixin?signature=aadec8d9378642a36365838ec0c51803304e470a&timestamp=1568976947&nonce=1452673524&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 3.19ms
+[I 190920 18:56:23 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190920 18:56:28 wxauthorize:49] body: <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1568976987</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[你好]]></Content>
+    <MsgId>22462352509128038</MsgId>
+    </xml>
+[I 190920 18:56:28 web:2246] 200 POST /weixin?signature=45fd03b37277ebb06e10962e6e5df2e550a35524&timestamp=1568976988&nonce=1381442876&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 1.70ms
+[I 190920 18:57:00 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190920 18:57:05 wxauthorize:49] body: <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1568977024</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[溜了溜了]]></Content>
+    <MsgId>22462351283280785</MsgId>
+    </xml>
+[E 190920 18:57:05 wxauthorize:50] 微信消息回复中心】收到用户消息<xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1568977024</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[溜了溜了]]></Content>
+    <MsgId>22462351283280785</MsgId>
+    </xml>
+[I 190920 18:57:05 web:2246] 200 POST /weixin?signature=1ae05ef954dc7958635c02b01bf4853cd3b506f4&timestamp=1568977025&nonce=1334536652&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 1.67ms
+[E 190920 19:04:14 wxauthorize:49] body: <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1568977453</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[什么]]></Content>
+    <MsgId>22462352987383754</MsgId>
+    </xml>
+[E 190920 19:04:14 wxauthorize:50] 微信消息回复中心】收到用户消息<xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1568977453</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[什么]]></Content>
+    <MsgId>22462352987383754</MsgId>
+    </xml>
+[I 190920 19:04:14 web:2246] 200 POST /weixin?signature=433d61fe9aa32a126ed03de80961432b9a701b9a&timestamp=1568977454&nonce=106602813&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 1.44ms
+[W 190920 21:00:24 web:2246] 404 GET / (5.35.42.33) 1.76ms
+[W 190920 21:10:54 web:2246] 404 GET / (83.217.12.94) 0.88ms
+[W 190920 21:24:36 web:2246] 404 GET / (189.168.29.136) 0.94ms
+[W 190920 22:06:28 web:2246] 404 GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=busybox&curpath=/&currentsetting.htm=1 (220.135.126.238) 1.12ms
+[W 190920 22:06:34 web:2246] 404 GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=busybox&curpath=/&currentsetting.htm=1 (220.135.126.238) 1.15ms
+[W 190920 22:55:50 web:2246] 404 GET / (222.186.3.113) 0.76ms
+[W 190920 23:43:50 web:2246] 404 GET / (110.143.203.218) 1.18ms
+[W 190920 23:50:42 web:2246] 404 GET / (80.182.1.250) 0.81ms
+[W 190921 00:14:39 web:2246] 404 GET / (98.159.91.140) 0.98ms
+[W 190921 01:29:27 web:2246] 404 GET / (167.57.29.216) 0.92ms
+[W 190921 01:31:10 web:2246] 404 GET / (210.223.99.216) 1.08ms
+[W 190921 01:34:26 web:2246] 404 GET /manager/html (186.189.229.115) 0.78ms
+[W 190921 01:34:32 web:2246] 404 GET / (185.65.134.232) 0.80ms
+[W 190921 01:42:39 web:2246] 404 GET http://www.baidu.com (192.119.66.31) 0.91ms
+[W 190921 01:53:15 web:2246] 404 GET http://www.baidu.com (192.119.67.64) 0.89ms
+[W 190921 01:58:58 web:2246] 404 GET http://www.baidu.com (142.11.244.19) 0.87ms
+[W 190921 02:02:41 web:2246] 404 GET http://www.baidu.com (142.11.244.20) 0.85ms
+[W 190921 02:03:29 web:2246] 404 GET / (2.181.31.164) 0.76ms
+[W 190921 02:03:29 web:2246] 404 GET / (2.181.31.164) 1.05ms
+[W 190921 02:04:54 web:2246] 404 GET http://www.baidu.com (192.119.67.13) 0.89ms
+[W 190921 02:06:07 web:2246] 404 GET http://www.baidu.com (192.119.67.7) 1.10ms
+[W 190921 02:06:48 web:2246] 404 GET http://www.baidu.com (142.11.244.21) 0.92ms
+[W 190921 02:07:48 web:2246] 404 GET http://www.baidu.com (142.11.244.17) 0.99ms
+[W 190921 02:08:16 web:2246] 404 GET http://www.baidu.com (192.119.66.156) 0.86ms
+[W 190921 02:09:36 web:2246] 404 GET http://www.baidu.com (142.11.244.16) 1.17ms
+[W 190921 04:06:22 web:2246] 404 GET /TP/public/index.php (39.135.1.163) 1.18ms
+[W 190921 04:06:23 web:2246] 404 GET /TP/index.php (39.135.1.163) 0.87ms
+[W 190921 04:06:23 web:2246] 404 GET /thinkphp/html/public/index.php (39.135.1.163) 1.03ms
+[W 190921 04:06:23 web:2246] 404 GET /html/public/index.php (39.135.1.163) 0.93ms
+[W 190921 04:06:23 web:2246] 404 GET /public/index.php (39.135.1.163) 0.91ms
+[W 190921 04:06:23 web:2246] 404 GET /TP/html/public/index.php (39.135.1.163) 0.97ms
+[W 190921 04:06:23 web:2246] 404 GET /elrekt.php (39.135.1.163) 1.13ms
+[W 190921 04:06:23 web:2246] 404 GET /index.php (39.135.1.163) 0.94ms
+[W 190921 04:06:23 web:2246] 404 GET / (39.135.1.163) 0.92ms
+[W 190921 05:02:09 web:2246] 404 GET / (128.14.133.58) 0.86ms
+[W 190921 05:17:22 web:2246] 404 GET / (201.150.149.182) 0.83ms
+[W 190921 06:00:10 web:2246] 404 GET / (176.126.162.123) 0.97ms
+[W 190921 06:05:55 web:2246] 404 GET /TP/public/index.php (183.216.183.77) 1.17ms
+[W 190921 06:05:55 web:2246] 404 GET /TP/index.php (183.216.183.77) 1.03ms
+[W 190921 06:05:55 web:2246] 404 GET /thinkphp/html/public/index.php (183.216.183.77) 1.06ms
+[W 190921 06:05:55 web:2246] 404 GET /html/public/index.php (183.216.183.77) 1.24ms
+[W 190921 06:05:56 web:2246] 404 GET /public/index.php (183.216.183.77) 0.85ms
+[W 190921 06:05:56 web:2246] 404 GET /TP/html/public/index.php (183.216.183.77) 0.80ms
+[W 190921 06:05:56 web:2246] 404 GET /elrekt.php (183.216.183.77) 1.27ms
+[W 190921 06:05:56 web:2246] 404 GET /index.php (183.216.183.77) 1.09ms
+[W 190921 06:05:56 web:2246] 404 GET / (183.216.183.77) 0.99ms
+[W 190921 07:32:47 web:2246] 404 GET / (186.139.149.127) 0.84ms
+[I 190921 08:51:35 http1connection:289] Malformed HTTP message from 113.173.239.8: Malformed HTTP version in HTTP Request-Line: 'HTTP'
+[W 190921 09:01:57 web:2246] 404 GET / (183.60.141.183) 0.84ms
+[W 190921 09:05:18 web:2246] 404 GET /nmaplowercheck1569027970 (183.60.141.183) 1.28ms
+[W 190921 09:05:44 web:2246] 404 GET /evox/about (183.60.141.183) 0.95ms
+[W 190921 09:07:24 web:2246] 404 GET /nmaplowercheck1569027986 (183.60.141.183) 0.95ms
+[W 190921 09:07:24 web:2246] 404 GET /HNAP1 (183.60.141.183) 1.13ms
+[W 190921 09:07:36 web:2246] 404 POST /sdk (183.60.141.183) 1.32ms
+[W 190921 09:08:19 web:2246] 404 GET / (183.60.141.183) 1.09ms
+[W 190921 09:08:29 web:2246] 404 GET / (183.60.141.183) 0.90ms
+[W 190921 09:52:55 web:2246] 404 GET / (58.251.121.185) 1.12ms
+[W 190921 10:56:57 web:2246] 404 GET /thinkphp/html/public/index.php (58.251.121.184) 0.99ms
+[W 190921 11:25:18 web:2246] 404 GET / (173.249.31.29) 0.81ms
+[W 190921 11:36:04 web:2246] 404 GET /TP/public/index.php (118.126.94.215) 0.97ms
+[W 190921 11:36:04 web:2246] 404 GET /TP/index.php (118.126.94.215) 1.00ms
+[W 190921 11:36:04 web:2246] 404 GET /thinkphp/html/public/index.php (118.126.94.215) 0.85ms
+[W 190921 11:36:04 web:2246] 404 GET /html/public/index.php (118.126.94.215) 1.13ms
+[W 190921 11:36:04 web:2246] 404 GET /public/index.php (118.126.94.215) 1.15ms
+[W 190921 11:36:04 web:2246] 404 GET /TP/html/public/index.php (118.126.94.215) 0.87ms
+[W 190921 11:36:04 web:2246] 404 GET /elrekt.php (118.126.94.215) 0.87ms
+[W 190921 11:36:04 web:2246] 404 GET /index.php (118.126.94.215) 0.99ms
+[W 190921 11:36:04 web:2246] 404 GET / (118.126.94.215) 1.04ms
+[W 190921 11:46:52 web:2246] 404 GET / (171.67.70.80) 0.92ms
+[W 190921 11:49:54 web:2246] 404 GET / (5.61.0.62) 0.86ms
+[W 190921 12:06:27 web:2246] 404 GET / (202.196.65.124) 1.05ms
+[W 190921 12:06:27 web:2246] 404 GET / (202.196.65.124) 1.06ms
+[W 190921 12:25:10 web:2246] 404 GET / (138.185.165.116) 0.98ms
+[W 190921 14:25:12 web:2246] 404 GET / (37.112.60.223) 1.00ms
+[W 190921 14:28:54 web:2246] 404 GET / (39.98.213.1) 0.99ms
+[W 190921 16:24:28 web:2246] 404 GET / (194.4.41.246) 0.93ms
+[W 190921 16:46:40 web:2246] 404 GET /TP/public/index.php (115.159.122.71) 1.16ms
+[W 190921 16:46:40 web:2246] 404 GET /TP/index.php (115.159.122.71) 1.14ms
+[W 190921 16:46:40 web:2246] 404 GET /thinkphp/html/public/index.php (115.159.122.71) 0.81ms
+[W 190921 16:46:40 web:2246] 404 GET /html/public/index.php (115.159.122.71) 0.91ms
+[W 190921 16:46:40 web:2246] 404 GET /public/index.php (115.159.122.71) 0.96ms
+[W 190921 16:46:40 web:2246] 404 GET /TP/html/public/index.php (115.159.122.71) 1.44ms
+[W 190921 16:46:40 web:2246] 404 GET /elrekt.php (115.159.122.71) 0.95ms
+[W 190921 16:46:40 web:2246] 404 GET /index.php (115.159.122.71) 0.95ms
+[W 190921 16:46:40 web:2246] 404 GET / (115.159.122.71) 0.90ms
+[W 190921 18:37:15 web:2246] 404 GET / (149.255.222.10) 0.87ms
+[W 190921 18:37:28 web:2246] 404 GET /TP/public/index.php (120.236.0.230) 0.93ms
+[W 190921 18:37:28 web:2246] 404 GET /TP/index.php (120.236.0.230) 0.89ms
+[W 190921 18:37:28 web:2246] 404 GET /thinkphp/html/public/index.php (120.236.0.230) 1.04ms
+[W 190921 18:37:28 web:2246] 404 GET /html/public/index.php (120.236.0.230) 0.86ms
+[W 190921 18:37:28 web:2246] 404 GET /public/index.php (120.236.0.230) 0.86ms
+[W 190921 18:37:28 web:2246] 404 GET /TP/html/public/index.php (120.236.0.230) 1.26ms
+[W 190921 18:37:28 web:2246] 404 GET /elrekt.php (120.236.0.230) 0.88ms
+[W 190921 18:37:28 web:2246] 404 GET /index.php (120.236.0.230) 1.06ms
+[W 190921 18:37:28 web:2246] 404 GET / (120.236.0.230) 1.05ms
+[W 190921 18:42:33 web:2246] 404 GET /?fbclid=IwAR183sl9Wnk_xVD0nLeMbJuCUcyBN7HMw098_VUD_ps1aHIYyOKViA91mo4 (31.13.115.25) 0.87ms
+[W 190921 18:42:35 web:2246] 404 GET /favicon.ico (31.13.115.25) 1.06ms
+[W 190921 18:44:24 web:2246] 404 GET / (186.235.63.121) 0.95ms
+[W 190921 18:48:51 web:2246] 404 GET / (209.17.96.162) 0.85ms
+[W 190921 19:18:02 web:2246] 404 GET / (122.242.198.138) 1.09ms
+[W 190921 19:59:34 web:2246] 404 GET / (101.251.242.238) 0.84ms
+[I 190921 20:23:18 http1connection:289] Malformed HTTP message from 92.108.8.8: Malformed HTTP version in HTTP Request-Line: 'HTTP'
+[W 190921 21:37:44 web:2246] 404 GET /TP/public/index.php (112.29.140.226) 1.21ms
+[W 190921 21:37:44 web:2246] 404 GET /TP/index.php (112.29.140.226) 0.90ms
+[W 190921 21:37:44 web:2246] 404 GET /thinkphp/html/public/index.php (112.29.140.226) 0.84ms
+[W 190921 21:37:44 web:2246] 404 GET /html/public/index.php (112.29.140.226) 0.91ms
+[W 190921 21:37:44 web:2246] 404 GET /public/index.php (112.29.140.226) 0.87ms
+[W 190921 21:37:44 web:2246] 404 GET /TP/html/public/index.php (112.29.140.226) 1.05ms
+[W 190921 21:37:45 web:2246] 404 GET /elrekt.php (112.29.140.226) 0.90ms
+[W 190921 21:37:45 web:2246] 404 GET /index.php (112.29.140.226) 1.19ms
+[W 190921 21:37:45 web:2246] 404 GET / (112.29.140.226) 0.89ms
+[W 190922 01:15:33 web:2246] 404 GET /mysql/admin/index.php?lang=en (24.208.141.96) 1.13ms
+[W 190922 03:31:35 web:2246] 404 GET / (85.105.76.117) 1.54ms
+[W 190922 04:48:19 web:2246] 404 GET / (86.122.139.146) 1.16ms
+[W 190922 06:48:12 web:2246] 404 GET /manager/text/list (159.203.201.239) 0.74ms
+[W 190922 07:04:52 web:2246] 404 GET / (196.52.43.129) 1.11ms
+[W 190922 07:28:31 web:2246] 404 GET / (14.246.177.104) 0.89ms
+[W 190922 08:26:03 web:2246] 404 GET / (101.26.233.193) 0.84ms
+[W 190922 08:54:24 web:2246] 404 GET / (191.100.11.34) 0.86ms
+[W 190922 09:01:46 web:2246] 404 GET / (59.25.212.18) 0.92ms
+[W 190922 09:28:23 web:2246] 404 GET / (124.23.133.13) 1.05ms
+[W 190922 09:39:07 web:2246] 404 GET / (83.208.51.167) 1.00ms
+[W 190922 10:02:14 web:2246] 404 GET / (185.73.102.163) 1.04ms
+[W 190922 10:19:21 web:2246] 404 GET / (177.11.136.13) 0.82ms
+[W 190922 10:40:23 web:2246] 404 GET /manager/html (159.203.197.22) 0.88ms
+[W 190922 11:18:33 web:2246] 404 GET / (109.94.120.213) 0.79ms
+[I 190922 12:13:16 http1connection:289] Malformed HTTP message from 171.67.70.80: Malformed HTTP request line
+[W 190922 12:15:43 web:2246] 404 GET /manager/html (67.202.202.202) 0.99ms
+[W 190922 12:30:59 web:2246] 404 GET / (171.67.70.80) 0.97ms
+[W 190922 12:36:03 web:2246] 404 GET / (95.174.104.79) 1.02ms
+[W 190922 12:46:18 web:2246] 404 GET / (113.131.88.208) 1.11ms
+[W 190922 14:03:50 web:2246] 404 GET / (91.238.59.178) 1.18ms
+[W 190922 14:03:51 web:2246] 404 GET / (91.238.59.178) 0.86ms
+[W 190922 14:05:11 web:2246] 404 GET / (91.238.59.178) 0.84ms
+[W 190922 14:05:32 web:2246] 404 GET / (91.238.59.178) 0.90ms
+[W 190922 15:29:39 web:2246] 404 GET /mysql/admin/index.php?lang=en (82.15.188.22) 0.92ms
+[W 190922 16:00:40 web:2246] 404 GET /mysql/admin/index.php?lang=en (129.175.68.33) 1.03ms
+[W 190922 16:06:37 web:2246] 404 GET / (34.222.176.179) 0.99ms
+[W 190922 17:16:27 web:2246] 404 GET /mysql/admin/index.php?lang=en (66.29.186.186) 0.96ms
+[W 190922 18:17:18 web:2246] 404 GET / (31.130.248.198) 0.83ms
+[W 190922 19:15:13 web:2246] 404 GET / (95.42.217.99) 0.81ms
+[W 190922 19:20:05 web:2246] 404 GET / (95.42.217.99) 0.85ms
+[W 190922 19:21:39 web:2246] 404 GET / (95.42.217.99) 1.15ms
+[W 190922 19:27:22 web:2246] 404 GET / (62.182.199.53) 0.84ms
+[W 190922 20:15:09 web:2246] 404 GET / (177.73.15.99) 0.91ms
+[W 190922 20:56:40 web:2246] 404 GET / (73.45.251.167) 1.05ms
+[W 190922 21:00:27 web:2246] 404 GET /cm/ (104.199.42.5) 0.81ms
+[W 190922 21:02:15 web:2246] 404 GET /manager/html (211.38.144.230) 0.72ms
+[W 190922 22:51:52 web:2246] 404 GET /TP/public/index.php (39.135.1.160) 0.95ms
+[W 190922 22:51:53 web:2246] 404 GET /TP/index.php (39.135.1.160) 0.93ms
+[W 190922 22:51:53 web:2246] 404 GET /thinkphp/html/public/index.php (39.135.1.160) 1.00ms
+[W 190922 22:51:53 web:2246] 404 GET /html/public/index.php (39.135.1.160) 0.91ms
+[W 190922 22:51:53 web:2246] 404 GET /public/index.php (39.135.1.160) 1.34ms
+[W 190922 22:51:53 web:2246] 404 GET /TP/html/public/index.php (39.135.1.160) 0.92ms
+[W 190922 22:51:53 web:2246] 404 GET /elrekt.php (39.135.1.160) 1.19ms
+[W 190922 22:51:53 web:2246] 404 GET /index.php (39.135.1.160) 0.95ms
+[W 190922 22:51:53 web:2246] 404 GET / (39.135.1.160) 0.85ms
+[W 190922 23:34:42 web:2246] 404 GET / (37.230.241.62) 0.79ms
+[W 190922 23:48:21 web:2246] 404 GET / (201.162.109.13) 0.95ms
+[W 190923 00:21:09 web:2246] 404 GET / (195.133.223.166) 0.87ms
+[W 190923 00:22:09 web:2246] 404 GET /Public/home/appjs/Index.js (93.135.159.177) 1.13ms
+[W 190923 00:24:18 web:2246] 404 POST /upgrade.aspx?a1=a51599c6 (104.248.21.85) 0.88ms
+[W 190923 00:30:10 web:2246] 404 GET / (2.183.85.212) 0.82ms
+[W 190923 00:46:22 web:2246] 404 GET /w00tw00t.at.blackhats.romanian.anti-sec:) (103.1.102.16) 0.84ms
+[W 190923 00:46:23 web:2246] 404 GET /phpMyAdmin/scripts/setup.php (103.1.102.16) 0.79ms
+[W 190923 00:46:26 web:2246] 404 GET /phpmyadmin/scripts/setup.php (103.1.102.16) 1.02ms
+[W 190923 00:46:37 web:2246] 404 GET  (103.1.102.16) 0.84ms
+[W 190923 01:07:49 web:2246] 404 GET / (77.247.108.184) 0.94ms
+[W 190923 03:45:37 web:2246] 404 GET / (178.73.215.171) 0.90ms
+[W 190923 03:49:05 web:2246] 404 GET / (138.122.20.67) 0.83ms
+[W 190923 04:06:10 web:2246] 404 GET / (177.11.138.131) 0.79ms
+[W 190923 04:09:27 web:2246] 404 GET / (188.191.28.113) 0.81ms
+[W 190923 05:07:27 web:2246] 404 HEAD http://112.124.42.80:63435/ (60.191.52.254) 0.80ms
+[W 190923 05:28:58 web:2246] 404 GET / (113.44.245.88) 0.85ms
+[W 190923 07:45:22 web:2246] 404 HEAD / (119.98.63.54) 0.82ms
+[W 190923 07:45:22 web:2246] 404 HEAD / (119.98.63.54) 0.77ms
+[W 190923 07:47:02 web:2246] 404 GET /mysql/admin/index.php?lang=en (85.199.247.210) 0.79ms
+[W 190923 07:59:37 web:2246] 404 GET /TP/public/index.php (120.25.12.148) 0.89ms
+[W 190923 08:20:23 web:2246] 404 GET / (88.249.193.150) 0.88ms
+[W 190923 08:38:02 web:2246] 404 HEAD / (111.172.35.67) 0.94ms
+[W 190923 08:38:02 web:2246] 404 HEAD / (119.98.63.54) 0.88ms
+[W 190923 09:27:03 web:2246] 404 HEAD / (119.98.63.54) 0.89ms
+[W 190923 10:04:37 web:2246] 404 HEAD / (119.98.63.54) 0.83ms
+[W 190923 10:04:37 web:2246] 404 HEAD / (111.172.35.67) 0.86ms
+[E 190923 10:33:08 wxauthorize:49] body: <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569205988</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[测试账号]]></Content>
+    <MsgId>22465628963378050</MsgId>
+    </xml>
+[E 190923 10:33:08 wxauthorize:50] 微信消息回复中心】收到用户消息<xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569205988</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[测试账号]]></Content>
+    <MsgId>22465628963378050</MsgId>
+    </xml>
+[I 190923 10:33:08 web:2246] 200 POST /weixin?signature=6da37e779b1530c35f4043cab41567de3b50ff21&timestamp=1569205988&nonce=800634608&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 1.94ms
+[I 190923 10:33:58 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190923 10:34:19 wxauthorize:49] body: <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569206059</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[这是测试文字第一次]]></Content>
+    <MsgId>22465627433837376</MsgId>
+    </xml>
+[E 190923 10:34:19 wxauthorize:50] 微信消息回复中心】收到用户消息 
+    <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569206059</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[这是测试文字第一次]]></Content>
+    <MsgId>22465627433837376</MsgId>
+    </xml>
+[I 190923 10:34:19 web:2246] 200 POST /weixin?signature=3b0cf122769baabaddea62300aa86cd3c8a6cac4&timestamp=1569206059&nonce=751670423&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 2.32ms
+[I 190923 10:35:03 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[W 190923 10:40:58 web:2246] 404 GET / (91.185.50.107) 27.10ms
+[I 190923 10:45:54 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190923 10:46:07 wxauthorize:50] 微信消息回复中心】收到用户消息 
+    <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569206767</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[英文测试第一次]]></Content>
+    <MsgId>22465638579403215</MsgId>
+    </xml>
+[E 190923 10:46:07 web:1788] Uncaught exception POST /weixin?signature=197d405ed28093eda9e1c8e64658bc38eb7981fb&timestamp=1569206767&nonce=1164068729&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112)
+    HTTPServerRequest(protocol='http', host='tingyulin.cn', method='POST', uri='/weixin?signature=197d405ed28093eda9e1c8e64658bc38eb7981fb&timestamp=1569206767&nonce=1164068729&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8', version='HTTP/1.1', remote_ip='223.166.222.112')
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.5/dist-packages/tornado/web.py", line 1697, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/ubuntu/wexin/wxauthorize.py", line 51, in post
+        data = ET.fromstring(body)
+    AttributeError: module 'xml.etree.ElementInclude' has no attribute 'fromstring'
+[E 190923 10:46:07 web:2246] 500 POST /weixin?signature=197d405ed28093eda9e1c8e64658bc38eb7981fb&timestamp=1569206767&nonce=1164068729&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 3.36ms
+[W 190923 10:47:47 web:2246] 404 GET / (13.52.98.177) 0.99ms
+[I 190923 10:52:09 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190923 10:52:25 wxauthorize:50] 微信消息回复中心】收到用户消息 
+    <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569207145</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[一二三四五六七]]></Content>
+    <MsgId>22465646605662587</MsgId>
+    </xml>
+[E 190923 10:52:25 web:1788] Uncaught exception POST /weixin?signature=f590b206951f6692ff7c2c5946634ebe79a00b9f&timestamp=1569207145&nonce=2093584685&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112)
+    HTTPServerRequest(protocol='http', host='tingyulin.cn', method='POST', uri='/weixin?signature=f590b206951f6692ff7c2c5946634ebe79a00b9f&timestamp=1569207145&nonce=2093584685&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8', version='HTTP/1.1', remote_ip='223.166.222.112')
+    Traceback (most recent call last):
+      File "/usr/local/lib/python3.5/dist-packages/tornado/web.py", line 1697, in _execute
+        result = method(*self.path_args, **self.path_kwargs)
+      File "/home/ubuntu/wexin/wxauthorize.py", line 52, in post
+        ToUserName = data.find('ToUserName').text
+    AttributeError: 'int' object has no attribute 'text'
+[E 190923 10:52:25 web:2246] 500 POST /weixin?signature=f590b206951f6692ff7c2c5946634ebe79a00b9f&timestamp=1569207145&nonce=2093584685&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 4.36ms
+[I 190923 10:52:57 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190923 10:53:02 wxauthorize:50] 微信消息回复中心】收到用户消息 
+    <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569207182</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[二三四]]></Content>
+    <MsgId>22465645009452171</MsgId>
+    </xml>
+[E 190923 10:53:02 wxauthorize:53] 8888888888 =====:6
+[I 190923 10:53:02 web:2246] 200 POST /weixin?signature=97aa19808625602356e5c4707c0f3bb719246e80&timestamp=1569207182&nonce=674310908&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 2.29ms
+[I 190923 10:53:52 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190923 10:53:57 wxauthorize:50] 微信消息回复中心】收到用户消息 
+    <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569207236</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[你好]]></Content>
+    <MsgId>22465644354851443</MsgId>
+    </xml>
+[E 190923 10:53:57 wxauthorize:53] 8888888888 =====:6
+[I 190923 10:53:57 web:2246] 200 POST /weixin?signature=0c60cf1810bb0e8f9b2152ef6f1f3f65a2211187&timestamp=1569207236&nonce=1427578915&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 1.29ms
+[I 190923 10:56:42 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190923 10:56:48 wxauthorize:50] 微信消息回复中心】收到用户消息 
+    <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569207408</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[大家好]]></Content>
+    <MsgId>22465647957240462</MsgId>
+    </xml>
+[E 190923 10:56:48 wxauthorize:53] 8888888888 =====:gh_05bad6466599
+[E 190923 10:56:48 wxauthorize:63]  =====:大家好
+[I 190923 10:56:48 web:2246] 200 POST /weixin?signature=15c17486f944c8ad24945b438c555656e8ad2926&timestamp=1569207408&nonce=1183100855&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 1.62ms
+[W 190923 10:57:29 web:2246] 404 GET / (71.6.135.131) 1.59ms
+[W 190923 10:57:30 web:2246] 404 GET /robots.txt (71.6.135.131) 0.86ms
+[W 190923 10:57:30 web:2246] 404 GET /sitemap.xml (71.6.135.131) 0.99ms
+[W 190923 10:57:31 web:2246] 404 GET /.well-known/security.txt (71.6.135.131) 1.04ms
+[W 190923 10:57:33 web:2246] 404 GET /favicon.ico (71.6.135.131) 1.26ms
+[I 190923 10:58:30 autoreload:202] /home/ubuntu/wexin/wxauthorize.py modified; restarting server
+[E 190923 10:58:37 wxauthorize:50] 微信消息回复中心】收到用户消息 
+    <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569207517</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[你好]]></Content>
+    <MsgId>22465648990200790</MsgId>
+    </xml>
+[I 190923 10:58:37 web:2246] 200 POST /weixin?signature=3d58fb3c3b9bc508f5be1d05efd4801353e8f9b9&timestamp=1569207517&nonce=1542097634&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 1.40ms
+[W 190923 10:58:46 web:2246] 404 GET / (189.191.162.108) 1.94ms
+[E 190923 11:05:23 wxauthorize:50] 微信消息回复中心】收到用户消息 
+    <xml><ToUserName><![CDATA[gh_05bad6466599]]></ToUserName>
+    <FromUserName><![CDATA[oG7gk1W6DtOw9R3LXX-bOv-IYGs8]]></FromUserName>
+    <CreateTime>1569207923</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA[好像可以用欧国联]]></Content>
+    <MsgId>22465655953586259</MsgId>
+    </xml>
+[I 190923 11:05:23 web:2246] 200 POST /weixin?signature=bb9c3fbf7bfba2cd4e33760a0978fd7ce3e3f7ac&timestamp=1569207923&nonce=803088423&openid=oG7gk1W6DtOw9R3LXX-bOv-IYGs8 (223.166.222.112) 1.29ms
