@@ -8,6 +8,7 @@ import uuid
 from tornado import web, ioloop, httpserver
 from tornado.options import define, options
 from url import urlpatterns
+from wxshedule import WxShedule
 
 define('port', default=80, help='run on the given port', type=int)
 define('debug', default=True, help='enable debug mode')
@@ -34,6 +35,10 @@ def main():
     application = Application()
     http_server = httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(options.port)
+
+    # 执行定时任务
+    wx_shedule = WxShedule()
+    wx_shedule.excute()
     loop = ioloop.IOLoop.instance()
     loop.start()
 

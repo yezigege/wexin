@@ -67,9 +67,10 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     reply_content = "小叶子正在慢悠悠的开发中~"
                 if reply_content:
                     CreateTime = int(time.time())
-                    out = self.reply_text(FromUserName, ToUserName, CreateTime, reply_content)
+                    out = self.reply_text(self, FromUserName, ToUserName, CreateTime, reply_content)
                     self.write(out)
-            except:
+            except Exception as e:
+                logging.error(e)
                 pass
 
         elif MsgType == 'event':
@@ -85,8 +86,13 @@ class WxSignatureHandler(tornado.web.RequestHandler):
             except:
                 pass
 
+    @staticmethod
     def reply_text(self, FromUserName, ToUserName, CreateTime, Content):
         """回复文本消息模板"""
-        textTpl = """<xml> <ToUserName><![CDATA[%s]]></ToUserName> <FromUserName><![CDATA[%s]]></FromUserName> <CreateTime>%s</CreateTime> <MsgType><![CDATA[%s]]></MsgType> <Content><![CDATA[%s]]></Content></xml>"""
+        textTpl = """<xml> <ToUserName><![CDATA[%s]]></ToUserName> 
+                     <FromUserName><![CDATA[%s]]></FromUserName> 
+                     <CreateTime>%s</CreateTime> 
+                     <MsgType><![CDATA[%s]]></MsgType> 
+                     <Content><![CDATA[%s]]></Content></xml>"""
         out = textTpl % (FromUserName, ToUserName, CreateTime, 'text', Content)
         return out
