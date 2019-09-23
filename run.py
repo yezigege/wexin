@@ -8,6 +8,7 @@ import uuid
 from tornado import web, ioloop, httpserver
 from tornado.options import define, options
 from url import urlpatterns
+from wxmenu import WxMenuServer
 from wxshedule import WxShedule
 
 define('port', default=80, help='run on the given port', type=int)
@@ -39,6 +40,12 @@ def main():
     # 执行定时任务
     wx_shedule = WxShedule()
     wx_shedule.excute()
+
+    # 创建菜单
+    # wx_menu_server = WxMenuServer()  # 因为公众号主体为个人，无法开发自建菜单
+    # wx_menu_server.create_menu()
+
+    # 启动项目
     loop = ioloop.IOLoop.instance()
     loop.start()
 

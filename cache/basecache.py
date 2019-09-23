@@ -1,27 +1,12 @@
 # -*- coding: utf-8 -*-
 import redis
-
-"""缓存服务器"""
-CACHE_SERVER = {
-    'host': '127.0.0.1',
-    'port': 6379,
-    'database': 0,
-    'password': '',
-}
+from settings import REDIS
 
 
-class BaseCache(object):
-    """
-    缓存类父类
-    redis_ctl:                          redis控制句柄
-    """
-    _host = CACHE_SERVER.get('host', '')
-    _port = CACHE_SERVER.get('port', '')
-    _database = CACHE_SERVER.get('database', '')
-    _password = CACHE_SERVER.get('password', '')
+def get_redis_client(conf=REDIS):
+    print('redis: %s' % conf['host'])
+    return redis.StrictRedis(host=conf['host'], port=conf['port'], db=conf['database'])
 
-    @property
-    def redis_ctl(self):
-        """redis控制句柄"""
-        redis_ctl = redis.Redis(host=self._host, port=self._port, db=self._database, password=self._password)
-        return redis_ctl
+
+rs = get_redis_client(REDIS)
+

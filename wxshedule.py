@@ -3,8 +3,8 @@ import logging
 import tornado.ioloop
 import requests
 import json
-from server.wxconfig import WxConfig
-from cache.tokencache import TokenCache
+from settings import CONFIG_GET_ACCESS_TOKEN_URL, KEY_ACCESS_TOKEN, KEY_JSAPI_TICKET, _EXPIRE_TIME_ACCESS_TOKEN
+from cache import ctrl
 
 
 class WxShedule(object):
@@ -15,29 +15,26 @@ class WxShedule(object):
     get_access_token            获取微信全局唯一票据access_token
     get_jsapi_ticket           获取JS_SDK权限签名的jsapi_ticket
     """
-    _token_cache = TokenCache()  # 微信token缓存实例
-    _expire_time_access_token = 7000 * 1000  # token过期时间
 
     def excute(self):
         """执行定时器任务"""
         logging.info('【获取微信全局唯一票据access_token】>>>执行定时器任务')
         tornado.ioloop.IOLoop.instance().call_later(0, self.get_access_token)
-        tornado.ioloop.PeriodicCallback(self.get_access_token, self._expire_time_access_token).start()
+        tornado.ioloop.PeriodicCallback(self.get_access_token, _EXPIRE_TIME_ACCESS_TOKEN).start()
         # tornado.ioloop.IOLoop.current().start()
 
     def get_access_token(self):
         """获取微信全局唯一票据access_token"""
-        res = requests.get(WxConfig.config_get_access_token_url)
+        res = requests.get(CONFIG_GET_ACCESS_TOKEN_URL)
         data = eval(res.content.decode())
-        logging.error("res: {}".format(res.content))
-        self._token_cache.set_access_cache(
-            self._token_cache.KEY_ACCESS_TOKEN,
+        ctrl.wx_rs.set_access_cache_ctl(
+            KEY_ACCESS_TOKEN,
             data["access_token"],
         )
 
     def get_jsapi_ticket(self):
         """获取JS_SDK权限签名的jsapi_ticket"""
-        access_token = self._token_cache.get_cache(self._token_cache.KEY_ACCESS_TOKEN)
+        access_token = ctrl.wx_rs.get_cache_ctl(KEY_ACCESS_TOKEN)
         if access_token:
             url = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=%s&type=jsapi' % access_token
             r = requests.get(url)
@@ -50,7 +47,7 @@ class WxShedule(object):
                 if errcode == 0:
                     jsapi_ticket = d['ticket']
                     # 添加至redis中
-                    self._token_cache.set_access_cache(self._token_cache.KEY_JSAPI_TICKET, jsapi_ticket)
+                    ctrl.wx_rs.set_access_cache_ctl(KEY_JSAPI_TICKET, jsapi_ticket)
                 else:
                     logging.info('【微信JS-SDK】获取JS_SDK权限签名的jsapi_ticket>>>>errcode[' + errcode + ']')
                     logging.info('【微信JS-SDK】request jsapi_ticket error, will retry get_jsapi_ticket() method after 10s')

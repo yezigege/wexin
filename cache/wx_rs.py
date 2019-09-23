@@ -1,40 +1,37 @@
 # -*- coding: utf-8 -*-
-from cache.basecache import BaseCache
 import logging
+from settings import _EXPIRE_ACCESS_TOKEN, _EXPIRE_JS_TOKEN
 
 
-class TokenCache(BaseCache):
+class WexinCtrl(object):
     """
     微信token缓存
 
     set_cache               添加redis
     get_cache               获取redis
     """
-    _expire_access_token = 7200  # 微信access_token过期时间, 2小时
-    _expire_js_token = 30 * 24 * 3600   # 微信js网页授权过期时间, 30天
-    KEY_ACCESS_TOKEN = 'access_token'  # 微信全局唯一票据access_token
-    KEY_JSAPI_TICKET = 'jsapi_ticket'  # JS_SDK权限签名的jsapi_ticket
+    def __init__(self, ctrl):
+        self.ctrl = ctrl
 
     def set_access_cache(self, key, value):
         """添加微信access_token验证相关redis"""
-        res = self.redis_ctl.set(key, value)
-        self.redis_ctl.expire(key, self._expire_access_token)
+        res = self.ctrl.rs.set(key, value, ex=_EXPIRE_ACCESS_TOKEN)
         logging.error('【微信token缓存】setCache>>>key[' + key + '],value[' + value + ']')
         return res
 
     def set_js_cache(self, key, value):
         """添加网页授权相关redis"""
-        res = self.redis_ctl.set(key, value)
-        self.redis_ctl.expire(key, self._expire_js_token)
+        res = self.ctrl.rs.set(key, value, ex=_EXPIRE_JS_TOKEN)
         logging.error('【微信token缓存】setCache>>>key[' + key + '],value[' + value + ']')
         return res
 
     def get_cache(self, key):
         """获取redis"""
         try:
-            v = (self.redis_ctl.get(key)).decode('utf-8')
+            v = (self.ctrl.rs.get(key)).decode('utf-8')
             logging.error(v)
             logging.error('【微信token缓存】getCache>>>key[' + key + '],value[' + v + ']')
             return v
-        except Exception:
+        except Exception as e:
+            logging.error(e)
             return None
