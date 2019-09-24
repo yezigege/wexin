@@ -42,3 +42,4 @@ KEY_ACCESS_TOKEN = 'access_token'  # 微信全局唯一票据access_token
 KEY_JSAPI_TICKET = 'jsapi_ticket'  # JS_SDK权限签名的jsapi_ticket
 
 _EXPIRE_TIME_ACCESS_TOKEN = 7000 * 1000  # token过期时间
+

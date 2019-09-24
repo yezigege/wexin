@@ -7,6 +7,9 @@ import hashlib
 import tornado.web
 import xml.etree.ElementTree as ET
 import logging
+
+from playfun.qrcode import make_qrcode
+from cache import ctrl
 from settings import APPHOST, APPID, APPSECRET
 
 
@@ -16,7 +19,6 @@ class WxSignatureHandler(tornado.web.RequestHandler):
 
     check_signature: 校验signature是否正确
     """
-
     def data_received(self, chunk):
         pass
 
@@ -54,7 +56,9 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         ToUserName = data.find('ToUserName').text
         FromUserName = data.find('FromUserName').text
         MsgType = data.find('MsgType').text
-        if MsgType == 'text' or MsgType == 'voice':
+        Content = reply_content = ''
+        num = ctrl.rs.incr('qrs_show_num_%s' % FromUserName)
+        if MsgType == 'text' or MsgType == 'voice' or MsgType == 'image':
             '''文本消息 or 语音消息'''
             try:
                 MsgId = data.find("MsgId").text
@@ -62,11 +66,16 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     Content = data.find('Content').text  # 文本消息内容
                 elif MsgType == 'voice':
                     Content = data.find('Recognition').text  # 语音识别结果，UTF8编码
-                if Content == u'你好':
-                    reply_content = '您好,请问有什么可以帮助您的吗?'
+                elif MsgType == 'image':
+                    img_url = data.find('PicUrl').text  # 图片消息内容(图片地址)
+                    img_data = make_qrcode(img_url, FromUserName + str(num))
+                    if img_data:
+                        reply_content = "二维码制作完成！^_^"
                 else:
                     # 查找不到关键字,默认回复
                     reply_content = "小叶子正在慢悠悠的开发中~"
+                if Content == u'你好':
+                    reply_content = '您好,请问有什么可以帮助您的吗?'
                 if reply_content:
                     CreateTime = int(time.time())
                     out = self.reply_text(self, FromUserName, ToUserName, CreateTime, reply_content)

@@ -17,7 +17,8 @@ define('debug', default=True, help='enable debug mode')
 
 STATIC_PATH = os.path.join(sys.path[0], 'static')
 TPL_PATH = os.path.join(sys.path[0], 'template')
-
+IMGS = os.path.join(sys.path[0], 'static/images')
+print("=================", IMGS)
 
 class Application(web.Application):
     def __init__(self):
