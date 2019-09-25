@@ -56,10 +56,11 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         ToUserName = data.find('ToUserName').text
         FromUserName = data.find('FromUserName').text
         MsgType = data.find('MsgType').text
-        Content = reply_content = ''
+        Content = reply_content = reply_img = ''
         num = ctrl.rs.incr('qrs_show_num_%s' % FromUserName)
         if MsgType == 'text' or MsgType == 'voice' or MsgType == 'image':
-            '''文本消息 or 语音消息'''
+            logging.info("收到消息......")
+            '''文本消息 or 语音消息 or 图片消息'''
             try:
                 MsgId = data.find("MsgId").text
                 if MsgType == 'text':
@@ -67,22 +68,35 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 elif MsgType == 'voice':
                     Content = data.find('Recognition').text  # 语音识别结果，UTF8编码
                 elif MsgType == 'image':
+                    MediaId = data.find('MediaId').text
                     img_url = data.find('PicUrl').text  # 图片消息内容(图片地址)
-                    img_data = make_qrcode(img_url, FromUserName + str(num))
+                    img_data = make_qrcode(img_url, FromUserName + '_' + str(num))
                     if img_data:
-                        reply_content = "二维码制作完成！^_^"
-                else:
-                    # 查找不到关键字,默认回复
-                    reply_content = "小叶子正在慢悠悠的开发中~"
-                if Content == u'你好':
-                    reply_content = '您好,请问有什么可以帮助您的吗?'
-                if reply_content:
-                    CreateTime = int(time.time())
-                    out = self.reply_text(self, FromUserName, ToUserName, CreateTime, reply_content)
-                    self.write(out)
+                        reply_img = "二维码制作完成！^_^" + MediaId
+                        logging.error("====={}=====".format(reply_img))
             except Exception as e:
                 logging.error(e)
                 pass
+
+        if reply_img:
+            print("调用发图片消息模板")
+            CreateTime = int(time.time())
+            out = self.reply_image(self, FromUserName, ToUserName, CreateTime, 'text', '________图片消息回复成功_______')
+            self.write(out)
+            logging.info("________图片消息回复成功_______")
+            return
+
+        if Content == u'你好':
+            reply_content = '您好,请问有什么可以帮助您的吗?'
+        else:
+            # 查找不到关键字,默认回复
+            reply_content = "小叶子正在慢悠悠的开发中~"
+
+        if reply_content:
+            CreateTime = int(time.time())
+            out = self.reply_text(self, FromUserName, ToUserName, CreateTime, MsgType, reply_content)
+            self.write(out)
+            logging.info("________消息回复成功_______")
 
         elif MsgType == 'event':
             '''接收事件推送'''
@@ -98,14 +112,31 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 pass
 
     @staticmethod
-    def reply_text(self, FromUserName, ToUserName, CreateTime, Content):
+    def reply_text(self, FromUserName, ToUserName, CreateTime, MsgType, Content):
         """回复文本消息模板"""
-        textTpl = """<xml> <ToUserName><![CDATA[%s]]></ToUserName> 
-                     <FromUserName><![CDATA[%s]]></FromUserName> 
-                     <CreateTime>%s</CreateTime> 
-                     <MsgType><![CDATA[%s]]></MsgType> 
-                     <Content><![CDATA[%s]]></Content></xml>"""
-        out = textTpl % (FromUserName, ToUserName, CreateTime, 'text', Content)
+        textTpl = """<xml> 
+                         <ToUserName><![CDATA[%s]]></ToUserName> 
+                         <FromUserName><![CDATA[%s]]></FromUserName> 
+                         <CreateTime>%s</CreateTime> 
+                         <MsgType><![CDATA[%s]]></MsgType> 
+                         <Content><![CDATA[%s]]></Content>
+                     </xml>"""
+        out = textTpl % (FromUserName, ToUserName, CreateTime, MsgType, Content)
+        return out
+
+    @staticmethod
+    def reply_image(self, FromUserName, ToUserName, CreateTime, MsgType, Imgdata):
+        """回复图片消息模板"""
+        imgTpl = """<xml> 
+                         <ToUserName><![CDATA[%s]]></ToUserName> 
+                         <FromUserName><![CDATA[%s]]></FromUserName> 
+                         <CreateTime>%s</CreateTime> 
+                         <MsgType><![CDATA[%s]]></MsgType> 
+                         <Content><![CDATA[%s]]></Content>
+                     </xml>"""
+        out = imgTpl % (FromUserName, ToUserName, CreateTime, MsgType, Imgdata)
+        logging.error('微信消息回复中心回复用户消息 \n' + out)
+
         return out
 
 

@@ -10,7 +10,8 @@ import logging
 from MyQR import myqr
 
 
-IMAGES = os.path.join(sys.path[0], 'static/images')  # 图片存储位置
+IMAGES = os.path.join(sys.path[0], 'static/images/')  # 图片存储位置
+QRCODE = os.path.join(sys.path[0], 'static/qrcodes')  # 二维码存储位置
 
 
 def download_img(url, name):
@@ -22,7 +23,6 @@ def download_img(url, name):
     try:
         res = requests.get(url)
         img = res.content
-        logging.error("图片存储名称及位置: {}".format(path))
         with open(path, 'wb') as f:
             f.write(img)
     except Exception as e:
@@ -55,7 +55,7 @@ def make_qrcode(url, name):
                 # 新二维码的文件名
                 save_name="{}.png".format(name),
                 # 新二维码的存储位置
-                save_dir=sys.path[0]
+                save_dir=QRCODE
             )
 
         print("二维码制作完成！")
