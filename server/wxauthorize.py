@@ -8,7 +8,7 @@ import tornado.web
 import xml.etree.ElementTree as ET
 import logging
 
-from playfun.qrcode import make_qrcode
+from playfun.qrcode import make_qrcode, upload_img
 from cache import ctrl
 from settings import APPHOST, APPID, APPSECRET
 
@@ -70,9 +70,17 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 elif MsgType == 'image':
                     MediaId = data.find('MediaId').text
                     img_url = data.find('PicUrl').text  # 图片消息内容(图片地址)
-                    img_data = make_qrcode(img_url, FromUserName + '_' + str(num))
+                    qr_name = FromUserName + '_' + str(num)
+                    img_data = make_qrcode(img_url, qr_name)
+
                     if img_data:
-                        reply_img = "二维码制作完成！^_^" + MediaId
+                        try:
+                            res = upload_img(MsgType, qr_name)
+                        except:
+                            logging.error("#######上传图片失败########")
+                            pass
+
+                        reply_img = res
                         logging.error("====={}=====".format(reply_img))
             except Exception as e:
                 logging.error(e)
@@ -81,7 +89,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         if reply_img:
             print("调用发图片消息模板")
             CreateTime = int(time.time())
-            out = self.reply_image(self, FromUserName, ToUserName, CreateTime, 'text', '________图片消息回复成功_______')
+            out = self.reply_image(self, FromUserName, ToUserName, CreateTime, MsgType, reply_img)
             self.write(out)
             logging.info("________图片消息回复成功_______")
             return
@@ -125,16 +133,16 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         return out
 
     @staticmethod
-    def reply_image(self, FromUserName, ToUserName, CreateTime, MsgType, Imgdata):
+    def reply_image(self, FromUserName, ToUserName, CreateTime, MsgType, MediaId):
         """回复图片消息模板"""
         imgTpl = """<xml> 
                          <ToUserName><![CDATA[%s]]></ToUserName> 
                          <FromUserName><![CDATA[%s]]></FromUserName> 
                          <CreateTime>%s</CreateTime> 
                          <MsgType><![CDATA[%s]]></MsgType> 
-                         <Content><![CDATA[%s]]></Content>
+                         <Image><MediaId><![CDATA[%s]]></MediaId></Image>
                      </xml>"""
-        out = imgTpl % (FromUserName, ToUserName, CreateTime, MsgType, Imgdata)
+        out = imgTpl % (FromUserName, ToUserName, CreateTime, MsgType, MediaId)
         logging.error('微信消息回复中心回复用户消息 \n' + out)
 
         return out
