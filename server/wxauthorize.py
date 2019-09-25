@@ -10,7 +10,7 @@ import logging
 
 from playfun.qrcode import make_qrcode, upload_img
 from cache import ctrl
-from settings import APPHOST, APPID, APPSECRET
+from settings import APPHOST, APPID, APPSECRET, SUBSCRIBE_CONTENT
 
 
 class WxSignatureHandler(tornado.web.RequestHandler):
@@ -113,8 +113,8 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 if Event == 'subscribe':
                     # 关注事件
                     CreateTime = int(time.time())
-                    reply_content = self.sys_order_reply
-                    out = self.reply_text(FromUserName, ToUserName, CreateTime, reply_content)
+                    reply_content = SUBSCRIBE_CONTENT
+                    out = self.reply_text(self, FromUserName, ToUserName, CreateTime, 'text', reply_content)
                     self.write(out)
             except:
                 pass

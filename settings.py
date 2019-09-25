@@ -14,6 +14,9 @@ REDIS = {
     'database': 0,
 }
 
+"""关注回复消息"""
+SUBSCRIBE_CONTENT = "地球人，你好！"
+
 '''获取access_token'''
 CONFIG_GET_ACCESS_TOKEN_URL = 'https://api.weixin.qq.com/cgi-bin/token?grant_' \
                               'type=client_credential&appid=%s&secret=%s' % (APPID, APPSECRET)
