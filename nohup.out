@@ -1,10 +1,8 @@
-Traceback (most recent call last):
-  File "run.py", line 11, in <module>
-    from wxshedule import WxShedule
-  File "/home/ubuntu/wexin/wxshedule.py", line 7, in <module>
-    from cache.tokencache import TokenCache
-  File "/home/ubuntu/wexin/cache/tokencache.py", line 2, in <module>
-    from cache.basecache import BaseCache
-  File "/home/ubuntu/wexin/cache/basecache.py", line 2, in <module>
-    import redis
-ImportError: No module named 'redis'
+[I 191021 11:07:25 wxshedule:21] 【获取微信全局唯一票据access_token】>>>执行定时器任务
+[I 191021 11:07:26 connectionpool:761] Starting new HTTPS connection (1): api.weixin.qq.com
+[E 191021 11:07:26 wx_rs:19] 【微信token缓存】setCache>>>key[access_token],value[26_6xdwBKRHrJDJDSriEqzF9aAfWQKP7w4d-jRFWJqmLevn1TuAvbjfBllKtVz14ih6CWyz-8Y1Uq9_-Jp_zUYYP1A0rpbWKz4CzNylpQpIxnQMQ2E1IeTKela4Sl1gcnnAsJh6h5DjiFgAiJVzMRHcAAAQVL]
+[W 191021 11:07:28 web:2246] 404 GET /page (219.142.144.134) 10.28ms
+[W 191021 11:07:29 web:2246] 404 GET /favicon.ico (219.142.144.134) 1.01ms
+[W 191021 11:07:40 web:2246] 404 GET / (219.142.144.134) 0.75ms
+[W 191021 11:08:08 web:2246] 404 GET / (171.67.70.80) 0.89ms
+[W 191021 11:08:17 web:2246] 404 GET / (219.142.144.134) 0.80ms
