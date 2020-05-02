@@ -27,11 +27,29 @@ class WxShedule(object):
         """获取微信全局唯一票据access_token"""
         res = requests.get(CONFIG_GET_ACCESS_TOKEN_URL)
         logger.info('【获取微信全局唯一票据access_token】Response[' + str(res.status_code) + ']')
-        data = eval(res.content.decode())
-        ctrl.wx_rs.set_access_cache_ctl(
-            KEY_ACCESS_TOKEN,
-            data["access_token"],
-        )
+        if res.status_code == 200:
+            res = res.text
+            logger.info('【获取微信全局唯一票据access_token】>>>' + res)
+            data = json.loads(res)
+            if 'access_token' in data.keys():
+                access_token = data['access_token']
+                # 添加至redis中
+                ctrl.wx_rs.set_access_cache_ctl(
+                    KEY_ACCESS_TOKEN,
+                    data["access_token"],
+                )
+                # 获取JS_SDK权限签名的jsapi_ticket
+                self.get_jsapi_ticket()
+                return access_token
+            elif 'errcode' in data.keys():
+                errcode = data['errcode']
+                logger.info(
+                    '【获取微信全局唯一票据access_token-SDK】errcode[' + errcode + '] , will retry get_access_token() method after 10s')
+                tornado.ioloop.IOLoop.instance().call_later(10, self.get_access_token)
+        else:
+            logger.error('【获取微信全局唯一票据access_token】request access_token error, will retry get_access_token() method after 10s')
+            tornado.ioloop.IOLoop.instance().call_later(10, self.get_access_token)
+
 
     def get_jsapi_ticket(self):
         """获取JS_SDK权限签名的jsapi_ticket"""
