@@ -9,7 +9,7 @@ APPSECRET = '78cc90b8ee614b06b97abeb8dcf6d668'  # AppSecret(应用密钥)
 
 """redis 配置"""
 REDIS = {
-    'host': '127.0.0.1',
+    'host': '112.125.26.221',
     'port': 6379,
     'database': 0,
 }
