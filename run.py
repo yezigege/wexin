@@ -11,14 +11,14 @@ from url import urlpatterns
 from wxmenu import WxMenuServer
 from wxshedule import WxShedule
 
-define('port', default=80, help='run on the given port', type=int)
+define('port', default=8000, help='run on the given port', type=int)
 define('debug', default=True, help='enable debug mode')
 
 
 STATIC_PATH = os.path.join(sys.path[0], 'static')
 TPL_PATH = os.path.join(sys.path[0], 'template')
 IMGS = os.path.join(sys.path[0], 'static/images')
-print("=================", IMGS)
+
 
 class Application(web.Application):
     def __init__(self):
