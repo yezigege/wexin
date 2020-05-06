@@ -51,7 +51,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
 
     def post(self):
         body = self.request.body
-        logger.error('微信消息回复中心】收到用户消息 \n' + str(body.decode()))
+        logger.debug('微信消息回复中心】收到用户消息 \n' + str(body.decode()))
         data = ET.fromstring(body)
         ToUserName = data.find('ToUserName').text
         FromUserName = data.find('FromUserName').text
@@ -59,7 +59,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         Content = reply_content = reply_img = ''
         num = ctrl.rs.incr('qrs_show_num_%s' % FromUserName)
         if MsgType == 'text' or MsgType == 'voice' or MsgType == 'image':
-            logger.info(f"收到{MsgType}消息......")
+            logger.debug(f"收到{MsgType}消息......")
             '''文本消息 or 语音消息 or 图片消息'''
             try:
                 MsgId = data.find("MsgId").text
@@ -120,7 +120,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                 pass
 
     @staticmethod
-    def reply_text(self, FromUserName, ToUserName, CreateTime, MsgType, Content):
+    def reply_text(FromUserName, ToUserName, CreateTime, MsgType, Content):
         """回复文本消息模板"""
         textTpl = """<xml> 
                          <ToUserName><![CDATA[%s]]></ToUserName> 
@@ -133,7 +133,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         return out
 
     @staticmethod
-    def reply_image(self, FromUserName, ToUserName, CreateTime, MsgType, MediaId):
+    def reply_image(FromUserName, ToUserName, CreateTime, MsgType, MediaId):
         """回复图片消息模板"""
         imgTpl = """<xml> 
                          <ToUserName><![CDATA[%s]]></ToUserName> 

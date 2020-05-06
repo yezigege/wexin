@@ -25,7 +25,7 @@ class WxMenuServer(object):
         access_token = ctrl.wx_rs.get_cache_ctl(KEY_ACCESS_TOKEN)
         if access_token:
             url = MENU_CREATE_URL + access_token
-            logging.error("url=====> {}".format(url))
+            logging.info("url=====> {}".format(url))
             data = self.create_menu_data()
             r = requests.post(url, data.encode('utf-8'))
             logging.debug('【微信自定义菜单】自定义菜单创建接口Response[' + str(r.status_code) + ']')
@@ -37,7 +37,7 @@ class WxMenuServer(object):
                     errcode = json_res['errcode']
                     return errcode
         else:
-            logging.error('【微信自定义菜单】自定义菜单创建接口获取不到access_token')
+            logging.info('【微信自定义菜单】自定义菜单创建接口获取不到access_token')
 
     def get_menu(self):
         """自定义菜单查询接口"""
@@ -54,7 +54,7 @@ class WxMenuServer(object):
                     errcode = json_res['errcode']
                     return errcode
         else:
-            logging.error('【微信自定义菜单】自定义菜单查询接口获取不到access_token')
+            logging.info('【微信自定义菜单】自定义菜单查询接口获取不到access_token')
 
     def delete_menu(self):
         """自定义菜单删除接口"""
@@ -71,7 +71,7 @@ class WxMenuServer(object):
                     errcode = json_res['errcode']
                     return errcode
         else:
-            logging.error('【微信自定义菜单】自定义菜单删除接口获取不到access_token')
+            logging.info('【微信自定义菜单】自定义菜单删除接口获取不到access_token')
 
     def create_menu_data(self):
         """创建菜单数据"""

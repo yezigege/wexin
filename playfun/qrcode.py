@@ -31,7 +31,7 @@ def download_img(url, name):
         with open(path, 'wb') as f:
             f.write(img)
     except Exception as e:
-        logging.error("=======下载图片出错=======: {}".format(e))
+        logging.debug("=======下载图片出错=======: {}".format(e))
         pass
 
     logging.info("=====图片下载完成=====")
