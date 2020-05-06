@@ -9,7 +9,7 @@ APPSECRET = '78cc90b8ee614b06b97abeb8dcf6d668'  # AppSecret(应用密钥)
 
 """redis 配置"""
 REDIS = {
-    'host': '112.125.26.221',
+    'host': '172.18.0.2',    # docker自动创建分配的容器地址
     'port': 6379,
     'database': 0,
 }
