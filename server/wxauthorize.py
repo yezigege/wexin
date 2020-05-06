@@ -28,11 +28,11 @@ class WxSignatureHandler(tornado.web.RequestHandler):
             timestamp = self.get_argument('timestamp')
             nonce = self.get_argument('nonce')
             echostr = self.get_argument('echostr')
-            logger.debug(
+            logger.info(
                 '微信sign校验,signature=' + signature + ',&timestamp=' + timestamp + '&nonce=' + nonce + '&echostr=' + echostr)
             result = self.check_signature(signature, timestamp, nonce)
             if result:
-                logger.debug('微信sign校验,返回echostr=' + echostr)
+                logger.info('微信sign校验,返回echostr=' + echostr)
                 self.write(echostr)
             else:
                 logger.error('微信sign校验,---校验失败')
@@ -46,29 +46,34 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         L.sort()
         s = L[0] + L[1] + L[2]
         sha1 = hashlib.sha1(s.encode('utf-8')).hexdigest()
-        logger.debug('sha1=' + sha1 + '&signature=' + signature)
+        logger.info('sha1=' + sha1 + '&signature=' + signature)
         return sha1 == signature
 
     def post(self):
         body = self.request.body
-        logger.debug('微信消息回复中心】收到用户消息 \n' + str(body.decode()))
+        logger.info('微信消息回复中心】收到用户消息 \n' + str(body.decode()))
         data = ET.fromstring(body)
         ToUserName = data.find('ToUserName').text
         FromUserName = data.find('FromUserName').text
         MsgType = data.find('MsgType').text
-        Content = reply_content = reply_img = ''
+        reply_content = reply_img = ''
         num = ctrl.rs.incr('qrs_show_num_%s' % FromUserName)
         if MsgType == 'text' or MsgType == 'voice' or MsgType == 'image':
-            logger.debug(f"收到{MsgType}消息......")
+            logger.info(f"收到{MsgType}消息......")
             '''文本消息 or 语音消息 or 图片消息'''
             try:
                 MsgId = data.find("MsgId").text
                 if MsgType == 'text':
                     Content = data.find('Content').text  # 文本消息内容
+                    if Content == u'你好':
+                        reply_content = '您好,请问有什么可以帮助您的吗?'
+                    else:
+                        # 查找不到关键字,默认回复
+                        reply_content = "小叶子正在慢悠悠的开发中~"
                 elif MsgType == 'voice':
                     Content = data.find('Recognition').text  # 语音识别结果，UTF8编码
                 elif MsgType == 'image':
-                    MediaId = data.find('MediaId').text
+                    # MediaId = data.find('MediaId').text
                     img_url = data.find('PicUrl').text  # 图片消息内容(图片地址)
                     qr_name = FromUserName + '_' + str(num)
                     img_data = make_qrcode(img_url, qr_name)
@@ -76,12 +81,11 @@ class WxSignatureHandler(tornado.web.RequestHandler):
                     if img_data:
                         try:
                             res = upload_img(MsgType, qr_name)
+                            reply_img = res
                         except:
-                            logger.error("#######上传图片失败########")
+                            logger.error(f"#######上传图片失败=={reply_img}########")
                             pass
 
-                        reply_img = res
-                        logger.error(f"====={reply_img}=====")
             except Exception as e:
                 logger.error(e)
                 pass
@@ -89,16 +93,10 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         if reply_img:
             print("调用发图片消息模板")
             CreateTime = int(time.time())
-            out = self.reply_image(self, FromUserName, ToUserName, CreateTime, MsgType, reply_img)
+            out = self.reply_image(FromUserName, ToUserName, CreateTime, MsgType, reply_img)
             self.write(out)
             logger.info("________图片消息回复成功_______")
             return
-
-        if Content == u'你好':
-            reply_content = '您好,请问有什么可以帮助您的吗?'
-        else:
-            # 查找不到关键字,默认回复
-            reply_content = "小叶子正在慢悠悠的开发中~"
 
         if reply_content:
             CreateTime = int(time.time())
@@ -119,8 +117,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
             except:
                 pass
 
-    @staticmethod
-    def reply_text(FromUserName, ToUserName, CreateTime, MsgType, Content):
+    def reply_text(self, FromUserName, ToUserName, CreateTime, MsgType, Content):
         """回复文本消息模板"""
         textTpl = """<xml> 
                          <ToUserName><![CDATA[%s]]></ToUserName> 
@@ -132,8 +129,7 @@ class WxSignatureHandler(tornado.web.RequestHandler):
         out = textTpl % (FromUserName, ToUserName, CreateTime, MsgType, Content)
         return out
 
-    @staticmethod
-    def reply_image(FromUserName, ToUserName, CreateTime, MsgType, MediaId):
+    def reply_image(self, FromUserName, ToUserName, CreateTime, MsgType, MediaId):
         """回复图片消息模板"""
         imgTpl = """<xml> 
                          <ToUserName><![CDATA[%s]]></ToUserName> 
@@ -180,17 +176,17 @@ class WxAuthorServer(object):
         dict = {'redirect_uri': self.REDIRECT_URI}
         redirect_uri = parse.urlencode(dict)
         author_get_code_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&%s&response_type=code&scope=%s&state=%s#wechat_redirect' % (APPID, redirect_uri, self.SCOPE, state)
-        logger.debug('【微信网页授权】获取网页授权的code的url>>>>' + author_get_code_url)
+        logger.info('【微信网页授权】获取网页授权的code的url>>>>' + author_get_code_url)
         return author_get_code_url
 
     def get_auth_access_token(self, code):
         """通过code换取网页授权access_token"""
         url = self.get_access_token_url + 'appid=%s&secret=%s&code=%s&grant_type=authorization_code' % (APPID, APPSECRET, code)
         r = requests.get(url)
-        logger.debug('【微信网页授权】通过code换取网页授权access_token的Response[' + str(r.status_code) + ']')
+        logger.info('【微信网页授权】通过code换取网页授权access_token的Response[' + str(r.status_code) + ']')
         if r.status_code == 200:
             res = r.text
-            logger.debug('【微信网页授权】通过code换取网页授权access_token>>>>' + res)
+            logger.info('【微信网页授权】通过code换取网页授权access_token>>>>' + res)
             json_res = json.loads(res)
             if 'access_token' in json_res.keys():
                 return json_res
@@ -201,8 +197,8 @@ class WxAuthorServer(object):
         """拉取用户信息"""
         url = self.get_userinfo_url + 'access_token=%s&openid=%s&lang=zh_CN' % (access_token, openid)
         r = requests.get(url)
-        logger.debug('【微信网页授权】拉取用户信息Response[' + str(r.status_code) + ']')
+        logger.info('【微信网页授权】拉取用户信息Response[' + str(r.status_code) + ']')
         if r.status_code == 200:
             res = r.text
             json_data = json.loads((res.encode('iso-8859-1')).decode('utf-8'))
-            logger.debug('【微信网页授权】拉取用户信息>>>>' + str(json_data))
+            logger.info('【微信网页授权】拉取用户信息>>>>' + str(json_data))
